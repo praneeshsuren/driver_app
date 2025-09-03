@@ -10,8 +10,9 @@ class NotificationsPage extends StatefulWidget {
 }
 
 class _NotificationsPageState extends State<NotificationsPage> {
-  int _currentNavIndex = 0; // Set to Home since notifications are accessed from home
-  
+  int _currentNavIndex =
+      0; // Set to Home since notifications are accessed from home
+
   @override
   void initState() {
     super.initState();
