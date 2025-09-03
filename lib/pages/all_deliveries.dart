@@ -2,6 +2,9 @@ import 'package:flutter/material.dart';
 import '../models/delivery.dart';
 import '../widgets/bottom_navbar.dart';
 import 'delivery_details.dart';
+import 'home.dart';
+import 'map.dart';
+import 'profile.dart';
 
 class AllDeliveriesPage extends StatefulWidget {
   const AllDeliveriesPage({super.key});
@@ -20,19 +23,39 @@ class _AllDeliveriesPageState extends State<AllDeliveriesPage> {
       _currentNavIndex = index;
     });
 
-    // Navigate to different pages based on index
+    // Navigate to different pages based on index without animation
     switch (index) {
       case 0:
-        Navigator.pushReplacementNamed(context, '/home');
+        Navigator.of(context).pushAndRemoveUntil(
+          PageRouteBuilder(
+            pageBuilder: (context, animation, secondaryAnimation) => const HomePage(),
+            transitionDuration: Duration.zero,
+            reverseTransitionDuration: Duration.zero,
+          ),
+          (route) => false,
+        );
         break;
       case 1:
-        Navigator.pushReplacementNamed(context, '/map');
+        Navigator.of(context).pushAndRemoveUntil(
+          PageRouteBuilder(
+            pageBuilder: (context, animation, secondaryAnimation) => const MapPage(),
+            transitionDuration: Duration.zero,
+            reverseTransitionDuration: Duration.zero,
+          ),
+          (route) => false,
+        );
         break;
       case 2:
-        Navigator.pushReplacementNamed(context, '/all_deliveries');
-        break;
+        break; // Already on all deliveries page
       case 3:
-        Navigator.pushReplacementNamed(context, '/profile');
+        Navigator.of(context).pushAndRemoveUntil(
+          PageRouteBuilder(
+            pageBuilder: (context, animation, secondaryAnimation) => const ProfilePage(),
+            transitionDuration: Duration.zero,
+            reverseTransitionDuration: Duration.zero,
+          ),
+          (route) => false,
+        );
         break;
     }
   }

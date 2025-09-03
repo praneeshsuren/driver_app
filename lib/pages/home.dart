@@ -4,6 +4,9 @@ import '../models/delivery.dart';
 import 'delivery_manifest.dart';
 import '../models/notification.dart';
 import '../services/notification_service.dart';
+import 'map.dart';
+import 'all_deliveries.dart';
+import 'profile.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -82,13 +85,34 @@ class _HomePageState extends State<HomePage> {
       case 0:
         break;
       case 1:
-        Navigator.pushReplacementNamed(context, '/map');
+        Navigator.of(context).pushAndRemoveUntil(
+          PageRouteBuilder(
+            pageBuilder: (context, animation, secondaryAnimation) => const MapPage(),
+            transitionDuration: Duration.zero,
+            reverseTransitionDuration: Duration.zero,
+          ),
+          (route) => false,
+        );
         break;
       case 2:
-        Navigator.pushReplacementNamed(context, '/all_deliveries');
+        Navigator.of(context).pushAndRemoveUntil(
+          PageRouteBuilder(
+            pageBuilder: (context, animation, secondaryAnimation) => const AllDeliveriesPage(),
+            transitionDuration: Duration.zero,
+            reverseTransitionDuration: Duration.zero,
+          ),
+          (route) => false,
+        );
         break;
       case 3:
-        Navigator.pushReplacementNamed(context, '/profile');
+        Navigator.of(context).pushAndRemoveUntil(
+          PageRouteBuilder(
+            pageBuilder: (context, animation, secondaryAnimation) => const ProfilePage(),
+            transitionDuration: Duration.zero,
+            reverseTransitionDuration: Duration.zero,
+          ),
+          (route) => false,
+        );
         break;
     }
   }

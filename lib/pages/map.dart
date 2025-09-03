@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import '../widgets/bottom_navbar.dart';
+import 'home.dart';
+import 'all_deliveries.dart';
+import 'profile.dart';
 
 class MapPage extends StatefulWidget {
   const MapPage({super.key});
@@ -16,19 +19,40 @@ class _MapPageState extends State<MapPage> {
       _currentNavIndex = index;
     });
 
-    // Navigate to different pages based on index
+    // Navigate to different pages based on index without animation
     switch (index) {
       case 0:
-        Navigator.pushReplacementNamed(context, '/home');
+        Navigator.of(context).pushAndRemoveUntil(
+          PageRouteBuilder(
+            pageBuilder: (context, animation, secondaryAnimation) => const HomePage(),
+            transitionDuration: Duration.zero,
+            reverseTransitionDuration: Duration.zero,
+          ),
+          (route) => false,
+        );
         break;
       case 1:
         // Already on map, do nothing
         break;
       case 2:
-        Navigator.pushReplacementNamed(context, '/all_deliveries');
+        Navigator.of(context).pushAndRemoveUntil(
+          PageRouteBuilder(
+            pageBuilder: (context, animation, secondaryAnimation) => const AllDeliveriesPage(),
+            transitionDuration: Duration.zero,
+            reverseTransitionDuration: Duration.zero,
+          ),
+          (route) => false,
+        );
         break;
       case 3:
-        Navigator.pushReplacementNamed(context, '/profile');
+        Navigator.of(context).pushAndRemoveUntil(
+          PageRouteBuilder(
+            pageBuilder: (context, animation, secondaryAnimation) => const ProfilePage(),
+            transitionDuration: Duration.zero,
+            reverseTransitionDuration: Duration.zero,
+          ),
+          (route) => false,
+        );
         break;
     }
   }
