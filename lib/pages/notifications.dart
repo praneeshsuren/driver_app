@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import '../models/notification.dart';
+import '../widgets/bottom_navbar.dart';
 
 class NotificationsPage extends StatefulWidget {
   const NotificationsPage({super.key});
@@ -9,9 +10,33 @@ class NotificationsPage extends StatefulWidget {
 }
 
 class _NotificationsPageState extends State<NotificationsPage> {
+  int _currentNavIndex = 0; // Set to Home since notifications are accessed from home
+  
   @override
   void initState() {
     super.initState();
+  }
+
+  void _onNavTap(int index) {
+    setState(() {
+      _currentNavIndex = index;
+    });
+
+    // Navigate to different pages based on index
+    switch (index) {
+      case 0:
+        Navigator.pushReplacementNamed(context, '/home');
+        break;
+      case 1:
+        Navigator.pushReplacementNamed(context, '/map');
+        break;
+      case 2:
+        Navigator.pushReplacementNamed(context, '/all_deliveries');
+        break;
+      case 3:
+        Navigator.pushReplacementNamed(context, '/profile');
+        break;
+    }
   }
 
   List<AppNotification> _getAllNotifications() {
@@ -232,6 +257,10 @@ class _NotificationsPageState extends State<NotificationsPage> {
         ],
       ),
       body: _buildNotificationsList(allNotifications),
+      bottomNavigationBar: BottomNavBar(
+        currentIndex: _currentNavIndex,
+        onTap: _onNavTap,
+      ),
     );
   }
 
